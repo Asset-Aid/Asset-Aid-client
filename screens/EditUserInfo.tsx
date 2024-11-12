@@ -1,31 +1,18 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 
 const EditUserInfo = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity>
-                    <Image
-                        source={require('../assets/backicon.png')}
-                    />
-                </TouchableOpacity>
-                
-                <Image
-                    source={require('../assets/logo1.png')} 
-                    style={styles.logo} 
-                    resizeMode="contain"
-                />
-
-                <TouchableOpacity>
-                    <Image
-                        source={require('../assets/exiticon.png')}
-                    />
-                </TouchableOpacity>
-
-                <Text>회원 정보 수정</Text>
+                <Text style={styles.headerText}>회원 정보 수정</Text>
                 <View style={styles.separator} />
+            </View>
+            <View>
                 
+                <Pressable style={styles.editButton}>
+                    <Text style={styles.editText}>수정하기</Text>
+                </Pressable>
             </View>
         </View>
     );
@@ -36,28 +23,36 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         backgroundColor: '#fff',
-      },
-    header:{
-        backgroundColor: '#fff',
-        flexDirection: 'row', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        paddingHorizontal: 15, 
-        height: 30,
-
     },
-    logo: {
-        alignSelf: 'center', 
-        width:120,
+    header: {
+        marginLeft:10,
+        marginRight:10,
+        marginBottom:10,
     },
-    separator:{
-        height: 1, 
-        backgroundColor: '#C8C4BB', 
-        marginHorizontal: 10, 
-        marginTop: 20,   
-        marginBottom: 50,
+    headerText: {
+        marginLeft:10,
+        fontSize: 18,
+        color: '#2D2D2D',
     },
-
+    separator: {
+        height: 1,
+        backgroundColor: '#C8C4BB',
+        marginTop: 10,
+    },
+    editButton:{
+        alignSelf:'center',
+        alignItems:'center',
+        width:330,
+        height:45,
+        borderWidth: 1,
+        borderColor: '#FC7900',
+        borderRadius:10
+    },
+    editText:{
+        color:'#FC7900',
+        fontWeight: 'bold',
+        fontSize: 25,
+    }
 });
 
 export default EditUserInfo;

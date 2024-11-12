@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -6,7 +7,9 @@ import { NativeStackNavigationProp} from '@react-navigation/native-stack';
 type RootStackParamList = {
     GuestHome: undefined;
     Login: undefined;
+    Search: { screen: string }; 
     DepositSearch: undefined;
+    
 };
 
 
@@ -36,12 +39,12 @@ const GuestHomeScreen = () => {
             <Image
                     source={require('../assets/image1.png')} 
                     //resizeMode="contain"
-                    style={{width:360, height:200, borderRadius:10}}
-                />
+                    style={{width:360, height:200, borderRadius:10, alignSelf: 'center'}}
+            />
 
             <TouchableOpacity 
                 style={styles.searchButton}
-                onPress={() => navigation.navigate('DepositSearch')}
+                onPress={() => navigation.navigate('Search', { screen: 'DepositSearch' })}
             >
                 <Text style={{fontWeight: 'bold', fontSize: 20 }} >금융상품 찾아보기</Text>
             </TouchableOpacity>
@@ -128,6 +131,7 @@ const styles = StyleSheet.create({
         borderRadius: 8, 
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'center',
         marginTop:15
     },
     chartText: {
@@ -145,9 +149,11 @@ const styles = StyleSheet.create({
     },
     chartContainer:{
         flexDirection: 'row',
+        alignSelf: 'center',
     },
     innerContainer:{
         width:300,
+        alignSelf: 'center'
     },
     bigSeparator:{
         height: 2, 

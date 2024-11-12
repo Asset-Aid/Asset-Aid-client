@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type RootStackParamList = {
   DepositSearch: undefined;
+  SavingsSearch: undefined;
 };
 
 const CardSearch = () => {
@@ -41,7 +42,10 @@ const CardSearch = () => {
         >
           <Text style={styles.selectContainerText}>예금</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.savings}>
+        <TouchableOpacity 
+          style={styles.savings}
+          onPress={() => navigation.navigate('SavingsSearch')}
+        >
           <Text style={styles.selectContainerText}>적금</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.card}>
@@ -77,7 +81,8 @@ const CardSearch = () => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView></ScrollView>
+      <ScrollView>
+      </ScrollView>
     </View>
   );
 };
@@ -165,7 +170,7 @@ const styles = StyleSheet.create({
   benefitContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    //justifyContent: 'space-between',
     marginTop: 10,
   },
   benefitButton: {

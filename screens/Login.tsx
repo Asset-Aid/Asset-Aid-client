@@ -1,26 +1,51 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp} from '@react-navigation/native-stack';
 
+type RootStackParamList = {
+  Signup: undefined;
+};
+
 const Login = () => {
+
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <View style={styles.container}>
-     
-     <Image
+
+      <Image
         source={require('../assets/logo1.png')} 
         style={styles.logo} 
         resizeMode="contain"
       />
 
+      <TextInput
+        style={styles.input}
+        placeholder="아이디"
+        value={userId}
+        onChangeText={setUserId}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="비밀번호"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      
       <TouchableOpacity style={styles.loginButton}>
         <Text style={styles.buttonText}>로그인</Text>
       </TouchableOpacity>
       <View style={styles.signupContainer}>
         <Text >아직 AssetAid회원이 아니라면?</Text>
         <TouchableOpacity
-          //onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate('Signup')}
         >
           <Text style={styles.signupText}>회원가입</Text>
         </TouchableOpacity>
@@ -40,15 +65,18 @@ const styles = StyleSheet.create({
   logo:{
     alignSelf: 'center', 
     width:300,
-    marginTop:100,
+    marginTop:30,
+    marginBottom:40,
   },
   input: {
-    height: 50,
+    width:320,
+    height: 45,
     borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 9,
     paddingHorizontal: 10,
-    marginBottom: 16,
+    marginBottom: 15,
+    alignSelf:'center',    
   },
   loginButton: {
     width:300,
@@ -58,6 +86,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center', 
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop:30,
+    marginBottom:5,
   },
   buttonText: {
     color: '#fff',

@@ -4,25 +4,25 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type RootStackParamList = {
-    SavingsSearch: undefined;
+    DepositSearch: undefined;
     CardSearch: undefined;
 };
 
 
-const DepositSearch = () => {
+const SavingsSearch = () => {
 
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     return (
         <View style={styles.container}>
             <View style={styles.selectContainer}>
-                <TouchableOpacity style={styles.deposit}>
+                <TouchableOpacity 
+                    style={styles.deposit}
+                    onPress={() => navigation.navigate('DepositSearch')}
+                >
                     <Text style={styles.selectContainerText}>예금</Text>
                 </TouchableOpacity>
-                <TouchableOpacity 
-                    style={styles.savings}
-                    onPress={() => navigation.navigate('SavingsSearch')}
-                >
+                <TouchableOpacity style={styles.savings}>
                     <Text style={styles.selectContainerText}>적금</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
@@ -46,7 +46,7 @@ const DepositSearch = () => {
             
 
             <ScrollView>
-                    
+                <Text>적금</Text> 
             </ScrollView>
                 
         </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         width:70,
         height:30,
         borderRadius: 20,
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#FEE0C5',
     },
     card: {
         justifyContent: 'center',
@@ -134,4 +134,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default DepositSearch;
+export default SavingsSearch;
