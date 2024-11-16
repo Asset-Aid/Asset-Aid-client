@@ -1,10 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-// import axios from 'axios';
-
-interface DepositRecommendCardProps {
-  depositId: number;
-}
 
 interface DepositData {
   depositId: number;
@@ -13,102 +8,18 @@ interface DepositData {
   bankName: string;
 }
 
-const dummyData: DepositData[] = [
-  {
-    depositId: 831,
-    depositName: 'NH왈츠회전예금 II',
-    bankColor: '#FFD700',
-    bankName: '농협은행',
-  },
-  {
-    depositId: 988,
-    depositName: 'NH내가Green초록세상예금',
-    bankColor: '#32CD32',
-    bankName: '농협은행',
-  },
-  {
-    depositId: 870,
-    depositName: 'NH왈츠회전예금 II',
-    bankColor: '#FFD700',
-    bankName: '농협은행',
-  },
-  {
-    depositId: 792,
-    depositName: 'NH왈츠회전예금 II',
-    bankColor: '#FFD700',
-    bankName: '농협은행',
-  },
-  {
-    depositId: 834,
-    depositName: 'NH고향사랑기부예금',
-    bankColor: '#FFD700',
-    bankName: '농협은행',
-  },
-  {
-    depositId: 639,
-    depositName: 'NH고향사랑기부예금',
-    bankColor: '#FFD700',
-    bankName: '농협은행',
-  },
-  {
-    depositId: 717,
-    depositName: 'NH고향사랑기부예금',
-    bankColor: '#FFD700',
-    bankName: '농협은행',
-  },
-  {
-    depositId: 636,
-    depositName: 'NH왈츠회전예금 II',
-    bankColor: '#FFD700',
-    bankName: '농협은행',
-  },
-  {
-    depositId: 951,
-    depositName: 'NH고향사랑기부예금',
-    bankColor: '#FFD700',
-    bankName: '농협은행',
-  },
-  {
-    depositId: 950,
-    depositName: 'NH올원e예금',
-    bankColor: '#FFD700',
-    bankName: '농협은행',
-  },
-];
+interface DepositRecommendCardProps {
+  depositData: DepositData;
+}
 
 const DepositRecommendCard: React.FC<DepositRecommendCardProps> = ({
-  depositId,
+  depositData,
 }) => {
-  const [depositData, setDepositData] = useState<DepositData | null>(null);
-
-  useEffect(() => {
-    // API 호출 함수
-    // const fetchDepositData = async () => {
-    //   try {
-    //     const response = await token.get(`/recommend/deposit`);
-    //     setDepositData(response.data);
-    //   } catch (error) {
-    //     console.error('Failed to fetch deposit data:', error);
-    //   }
-    // };
-
-    // fetchDepositData();
-
-    const filteredData = dummyData.find(data => data.depositId === depositId);
-    if (filteredData) {
-      setDepositData(filteredData);
-    }
-  }, [depositId]);
-
-  if (!depositData) {
-    return <Text>Loading...</Text>;
-  }
-
   return (
     <View style={[styles.card, {backgroundColor: depositData.bankColor}]}>
       <Text style={styles.title}>{depositData.depositName}</Text>
       <Image
-        source={require('./assets/character1.png')}
+        source={require('../assets/character1.png')}
         style={styles.image}
         resizeMode="contain"
       />
@@ -119,9 +30,10 @@ const DepositRecommendCard: React.FC<DepositRecommendCardProps> = ({
 
 const styles = StyleSheet.create({
   card: {
+    width: 140,
+    height: 140,
     borderRadius: 16,
     padding: 16,
-    alignItems: 'center',
     marginVertical: 8,
     marginHorizontal: 16,
     shadowColor: '#000',
@@ -140,11 +52,17 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     marginBottom: 8,
+    right: 80,
+    top: 85,
+    position: 'absolute',
   },
   bankName: {
     fontSize: 15,
+    left: 78,
+    top: 110,
     color: '#fff',
     fontWeight: 'bold',
+    position: 'absolute',
   },
 });
 

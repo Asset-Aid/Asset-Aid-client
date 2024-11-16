@@ -1,74 +1,37 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-// import axios from 'axios';
-
-interface CardRecommendCardProps {
-  cardId: number;
-}
 
 interface CardData {
   cardId: number;
   cardName: string;
-  cardColor: string;
-  cardIssuer: string;
+  bankColor: string;
+  bankName: string;
 }
 
-const dummyData: CardData[] = [
-  {
-    cardId: 201,
-    cardName: 'NH올원카드',
-    cardColor: '#FFD700',
-    cardIssuer: '농협은행',
-  },
-  {
-    cardId: 202,
-    cardName: 'NH내가Green카드',
-    cardColor: '#32CD32',
-    cardIssuer: '농협은행',
-  },
-];
+interface CardRecommendCardProps {
+  cardData: CardData;
+}
 
-const CardRecommendCard: React.FC<CardRecommendCardProps> = ({cardId}) => {
-  const [cardData, setCardData] = useState<CardData | null>(null);
-
-  useEffect(() => {
-    // API 호출 함수
-    // const fetchCardData = async () => {
-    //   try {
-    //     const response = await token.get(`/recommend/card);
-    //     setCardData(response.data);
-    //   } catch (error) {
-    //     console.error('Failed to fetch card data:', error);
-    //   }
-    // };
-
-    // fetchCardData();
-
-    // 더미 데이터를 기반으로 필터링
-    const filteredData = dummyData.find(data => data.cardId === cardId);
-    if (filteredData) {
-      setCardData(filteredData);
-    }
-  }, [cardId]);
-
-  if (!cardData) {
-    return <Text>Loading...</Text>;
-  }
-
+const CardRecommendCard: React.FC<CardRecommendCardProps> = ({cardData}) => {
   return (
-    <View style={[styles.card, {backgroundColor: cardData.cardColor}]}>
+    <View style={[styles.card, {backgroundColor: cardData.bankColor}]}>
       <Text style={styles.title}>{cardData.cardName}</Text>
-      <Image source={require('./assets/character1.png')} resizeMode="contain" />
-      <Text style={styles.cardIssuer}>{cardData.cardIssuer}</Text>
+      <Image
+        source={require('../assets/character1.png')}
+        style={styles.image}
+        resizeMode="contain"
+      />
+      <Text style={styles.bankName}>{cardData.bankName}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
+    width: 140,
+    height: 140,
     borderRadius: 16,
     padding: 16,
-    alignItems: 'center',
     marginVertical: 8,
     marginHorizontal: 16,
     shadowColor: '#000',
@@ -80,18 +43,24 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#000',
+    color: '#121212',
     marginBottom: 8,
   },
   image: {
     width: 50,
     height: 50,
     marginBottom: 8,
+    right: 80,
+    top: 85,
+    position: 'absolute',
   },
-  cardIssuer: {
+  bankName: {
     fontSize: 15,
+    left: 78,
+    top: 110,
     color: '#fff',
     fontWeight: 'bold',
+    position: 'absolute',
   },
 });
 
