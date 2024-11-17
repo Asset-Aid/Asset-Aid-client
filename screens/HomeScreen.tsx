@@ -5,6 +5,7 @@ import { NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type RootStackParamList = {
     MyPage: undefined; 
+    Search: { screen: string };
 };
 
 
@@ -30,7 +31,9 @@ const HomeScreen = () => {
                         resizeMode="contain"
                     />
                 </TouchableOpacity>
-                
+                <TouchableOpacity style={styles.searchButton} onPress={() => navigation.navigate('Search', { screen: 'DepositSearch' })}>
+                    <Text style={{ fontWeight: 'bold', fontSize: 20 }}>금융상품 찾아보기</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -59,7 +62,17 @@ const styles = StyleSheet.create({
     mypageicon:{
         width:30,
         height:30
-    }
+    },
+    searchButton: {
+        width: 360,
+        height: 35,
+        backgroundColor: '#F58748',
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginTop: 15,
+    },
     
 
 });

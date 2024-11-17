@@ -7,6 +7,7 @@ import MyPage from '../screens/MyPage';
 import LikedItems  from '../screens/LikedItems';
 import FinancialGoals from '../screens/FinancialGoals';
 import FinancialProfile from '../screens/FinancialProfile';
+import { SearchStack } from './SearchStack';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,11 @@ export default function AppStack() {
     <Stack.Screen name="FinancialGoals" component={FinancialGoals} options={{ headerShown: true }}/>
     <Stack.Screen name="FinancialProfile" component={FinancialProfile} options={{ headerShown: true }}/>
     <Stack.Screen name="LikedItems" component={LikedItems} options={{ headerShown: true }}/>
+    <Stack.Screen
+        name="Search"
+        component={SearchStack}
+        options={{ headerShown: true }} 
+    />
 
     </Stack.Navigator>
   );
